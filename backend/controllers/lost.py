@@ -20,7 +20,7 @@ lost = lost_ns.model('Lost', {
     "latitude": fields.Float(),
     "longitude": fields.Float(),
     "type": fields.String(),
-    "date": fields.Date(),
+    "date": fields.String(),
     "event": fields.String()
 })
 
@@ -54,16 +54,18 @@ class Lost(Resource):
             lost_data.event = lost_json['event']
         else:
             lost_data = lost_schema.load(lost_json)
+            return {'message': ITEM_NOT_FOUND}, 404
 
         lost_data.save_to_db()
         return lost_schema.dump(lost_data), 200
 
 class LostList(Resource):
-    @lost_ns.doc('Get all the Items')
+    @lost_ns.doc('Pegue todos as perdas')
     def get(self):
         return lost_list_schema.dump(LostModel.find_all()), 200
 
-    @lost_ns.doc('Create an Item')
+    @lost_ns.expect(lost)
+    @lost_ns.doc('Registre uma nova perda')
     def post(self):
         lost_json = request.get_json()
         lost_data = lost_schema.load(lost_json)
