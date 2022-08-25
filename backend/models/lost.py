@@ -12,7 +12,7 @@ class LostModel(db.Model):
     latitude = db.Column(db.Float, nullable=False)
     longitude = db.Column(db.Float, nullable=False)
     type = db.Column(db.String(20), nullable=False)
-    date = db.Column(db.Date, nullable=False)
+    date = db.Column(db.String(10), nullable=False)
     event = db.Column(db.String(20), nullable=False)
 
     def __init__(self, name, email, cpf, latitude, longitude, type, date, event):
