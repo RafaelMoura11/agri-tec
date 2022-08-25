@@ -8,7 +8,7 @@ class LostModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False, unique=True)
     email = db.Column(db.String(80), nullable=False, unique=True)
-    cpf = db.Column(db.String(80), nullable=False, unique=True)
+    cpf = db.Column(db.String(11), nullable=False, unique=True)
     latitude = db.Column(db.Float, nullable=False)
     longitude = db.Column(db.Float, nullable=False)
     type = db.Column(db.String(20), nullable=False)
