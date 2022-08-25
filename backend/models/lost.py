@@ -6,9 +6,9 @@ class LostModel(db.Model):
     __tablename__ = "losts"
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), nullable=False, unique=True)
-    email = db.Column(db.String(80), nullable=False, unique=True)
-    cpf = db.Column(db.String(11), nullable=False, unique=True)
+    name = db.Column(db.String(80), nullable=False)
+    email = db.Column(db.String(80), nullable=False)
+    cpf = db.Column(db.String(11), nullable=False)
     latitude = db.Column(db.Float, nullable=False)
     longitude = db.Column(db.Float, nullable=False)
     type = db.Column(db.String(20), nullable=False)
