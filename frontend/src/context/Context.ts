@@ -1,6 +1,8 @@
 import { createContext } from 'react';
 import ContextInterface from '../interfaces/ContextInterface';
 
-const Context = createContext<ContextInterface>({});
+const Context = createContext<ContextInterface>({
+    losts: [],
+});
 
 export default Context
