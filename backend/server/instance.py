@@ -12,11 +12,11 @@ class Server():
         self.app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
         self.app.config['PROPAGATE_EXCEPTIONS'] = True
 
-        self.book_ns = self.book_ns()
+        self.lost_ns = self.lost_ns()
 
         super().__init__()
 
-    def book_ns(self, ):
+    def lost_ns(self, ):
         return self.api.namespace(name='Softfocus', path='/')
 
     def run(self, ):
