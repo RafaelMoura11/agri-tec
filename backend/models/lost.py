@@ -52,6 +52,10 @@ class LostModel(db.Model):
     def find_all(cls) -> List["LostModel"]:
         return cls.query.all()
 
+    @classmethod
+    def find_by_id(cls, _id) -> "LostModel":
+        return cls.query.filter_by(id=_id).first()
+
     def save_to_db(self) -> None:
         db.session.add(self)
         db.session.commit()
