@@ -1,4 +1,5 @@
 import LostInterface from "../interfaces/LostInterface";
+import EventSelect from "./EventSelect";
 
 type Props = {
     lost: LostInterface;
@@ -51,27 +52,16 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
                 </div>
             </div>
             <div className="row gx-3 mb-3">
+                <EventSelect lost={ lost } onChangeHandler={ onChangeHandler } />
                 <div className="col-md-6">
                     <label className="small mb-1" htmlFor="type">Tipo da lavoura</label>
                     <input
-                        className="form-control"
-                        id="type"
-                        type="text"
-                        placeholder="Digite o tipo de lavoura do(a) Agricultor(a)"
-                        value={ lost.type }
-                        name="type"
-                        onChange={ ({ target: { name, value } }) => onChangeHandler(name, value) }
-                    />
-                </div>
-                <div className="col-md-6">
-                    <label className="small mb-1" htmlFor="event">Evento causador</label>
-                    <input
                     className="form-control"
-                    id="event"
+                    id="type"
                     type="text"
-                    placeholder="Digite o Evento Causador da Perda"
-                    value={ lost.event }
-                    name="event"
+                    placeholder="Digite o tipo da lavoura"
+                    value={ lost.type }
+                    name="type"
                     onChange={ ({ target: { name, value } }) => onChangeHandler(name, value) }
                     />
                 </div>
