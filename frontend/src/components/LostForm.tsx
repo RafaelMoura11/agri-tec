@@ -1,5 +1,8 @@
+import { useContext } from 'react';
 import LostInterface from "../interfaces/LostInterface";
 import EventSelect from "./EventSelect";
+
+import { Context } from '../context/Provider';
 
 type Props = {
     lost: LostInterface;
@@ -7,12 +10,16 @@ type Props = {
 }
 
 const LostForm: React.FC<Props> = ({ lost, setLost }) => {
+    const { editLost } = useContext(Context);
     const onChangeHandler = (name: string, value: string | number) => {
         setLost({ ...lost, [name]: value, })
     }
 
     return (
-        <form>
+        <form onSubmit={ (e: any) => {
+            e.preventDefault()
+            editLost(lost)
+        } }>
             <div className="mb-3">
                 <label className="small mb-1" htmlFor="name">Nome</label>
                 <input
@@ -104,7 +111,7 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
                     />
                 </div>
             </div>
-            <button className="btn btn-primary" type="button">Salvar</button>
+            <button className="btn btn-primary" type="submit">Salvar</button>
             <button type="button" className="btn btn-danger">Deletar</button>
         </form>
     )
