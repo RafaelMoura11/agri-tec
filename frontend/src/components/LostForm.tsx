@@ -20,6 +20,7 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
                     type="text"
                     placeholder="Digite o nome do(a) Agricultor(a)"
                     value={ lost.name }
+                    name="name"
                     onChange={ ({ target: { name, value } }) => onChangeHandler(name, value) }
                 />
             </div>
@@ -32,6 +33,7 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
                         type="text"
                         placeholder="Digite a Latitude da localização"
                         value={ lost.latitude }
+                        name="latitude"
                         onChange={ ({ target: { name, value } }) => onChangeHandler(name, Number(value)) }
                     />
                 </div>
@@ -43,6 +45,7 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
                         type="text"
                         placeholder="Digite a Longitude da localização"
                         value={ lost.longitude }
+                        name="longitude"
                         onChange={ ({ target: { name, value } }) => onChangeHandler(name, Number(value)) }
                     />
                 </div>
@@ -56,6 +59,7 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
                         type="text"
                         placeholder="Digite o tipo de lavoura do(a) Agricultor(a)"
                         value={ lost.type }
+                        name="type"
                         onChange={ ({ target: { name, value } }) => onChangeHandler(name, value) }
                     />
                 </div>
@@ -67,6 +71,7 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
                     type="text"
                     placeholder="Digite o Evento Causador da Perda"
                     value={ lost.event }
+                    name="event"
                     onChange={ ({ target: { name, value } }) => onChangeHandler(name, value) }
                     />
                 </div>
@@ -79,6 +84,7 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
                 type="email"
                 placeholder="Digite o email do(a) Agricultor(a)"
                 value={ lost.email }
+                name="email"
                 onChange={ ({ target: { name, value } }) => onChangeHandler(name, value) }
                 />
             </div>
@@ -91,6 +97,7 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
                         type="tel"
                         placeholder="Digite o CPF do(a) Agricultor(a)"
                         value={ lost.cpf }
+                        name="cpf"
                         onChange={ ({ target: { name, value } }) => onChangeHandler(name, value) }
                     />
                 </div>
@@ -100,9 +107,9 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
                         className="form-control"
                         id="date"
                         type="text"
-                        name="birthday"
                         placeholder="Digite a data do ocorrido"
                         value={ lost.date }
+                        name="date"
                         onChange={ ({ target: { name, value } }) => onChangeHandler(name, value) }
                     />
                 </div>
