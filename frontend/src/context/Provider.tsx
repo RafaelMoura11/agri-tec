@@ -2,27 +2,25 @@ import { useEffect, useState } from 'react';
 import Context from './Context';
 import api from '../api';
 import LostInterface from '../interfaces/LostInterface';
-import { useNavigate } from 'react-router-dom';
+
 
 type Props = {
   children: React.ReactNode
 }
 
 function Provider({ children }: Props) {
-  const navigate = useNavigate()
   const [losts, setLosts] = useState<LostInterface[]>([])
-  useEffect(() => {
-    const fetchLosts = async () => {
-      const { data } = await api.get('/api/losts')
-      setLosts(data)
-    }
-    fetchLosts()
-  }, [])
+
+
+  const getLosts = async () => {
+    const { data } = await api.get('/api/losts')
+    setLosts(data)
+  }
+
 
   const editLost = async (lost: LostInterface) => {
     try {
       await api.put(`/api/losts/${lost.id}`, lost)
-      return navigate('/')
     } catch (e) {
       console.log(e)
     }
@@ -32,14 +30,20 @@ function Provider({ children }: Props) {
   const deleteLost = async (id: number | string) => {
     try {
       await api.delete(`/api/losts/${id}`)
-      return navigate('/')
     } catch (e) {
       console.log(e)
     }
   }
 
+
+  useEffect(() => {
+    getLosts()
+  }, [])
+
+
   const contextValue = {
     losts,
+    getLosts,
     editLost,
     deleteLost,
   }

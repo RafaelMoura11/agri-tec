@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import LostInterface from "../interfaces/LostInterface";
 import EventSelect from "./EventSelect";
+import { useNavigate } from 'react-router-dom';
 
 import { Context } from '../context/Provider';
 
@@ -10,15 +11,26 @@ type Props = {
 }
 
 const LostForm: React.FC<Props> = ({ lost, setLost }) => {
-    const { editLost, deleteLost } = useContext(Context);
+    const navigate = useNavigate()
+    const { getLosts, editLost, deleteLost } = useContext(Context);
     const onChangeHandler = (name: string, value: string | number) => {
         setLost({ ...lost, [name]: value, })
     }
 
+    const onDeleteHandler = async () => {
+        if (lost.id) {
+            await deleteLost(lost.id)
+            await getLosts()
+            return navigate('/')
+        }
+    }
+
     return (
-        <form onSubmit={ (e: any) => {
+        <form onSubmit={ async (e: any) => {
             e.preventDefault()
-            editLost(lost)
+            await editLost(lost)
+            await getLosts()
+            return navigate('/')
         } }>
             <div className="mb-3">
                 <label className="small mb-1" htmlFor="name">Nome</label>
@@ -112,7 +124,7 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
                 </div>
             </div>
             <button className="btn btn-primary" type="submit">Salvar</button>
-            <button type="button" className="btn btn-danger" onClick={ () => lost.id && deleteLost(lost.id) } >Deletar</button>
+            <button type="button" className="btn btn-danger" onClick={ onDeleteHandler } >Deletar</button>
         </form>
     )
 }
