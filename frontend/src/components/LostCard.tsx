@@ -6,11 +6,11 @@ type Props = {
 
 const LostCard: React.FC<Props> = ({ lost }) => {
     return (
-        <div>
+        <li>
             {
                 lost.name
             }
-        </div>
+        </li>
     )
 }
 

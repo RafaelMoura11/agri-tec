@@ -5,13 +5,13 @@ import LostCard from './LostCard';
 const Losts: React.FC = () => {
     const { losts } = useContext(Context);
     return (
-        <div>
+        <ul>
             {
                 losts.map((lost) => (
                     <LostCard lost={ lost } key={ lost.id } />
                 ))
             }
-        </div>
+        </ul>
     )
 }
 
