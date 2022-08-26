@@ -28,9 +28,20 @@ function Provider({ children }: Props) {
     }
   }
 
+
+  const deleteLost = async (id: number | string) => {
+    try {
+      await api.delete(`/api/losts/${id}`)
+      return navigate('/')
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   const contextValue = {
     losts,
     editLost,
+    deleteLost,
   }
 
   return (

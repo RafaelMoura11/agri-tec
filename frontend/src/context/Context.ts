@@ -4,7 +4,8 @@ import LostInterface from '../interfaces/LostInterface';
 
 const Context = createContext<ContextInterface>({
     losts: [],
-    editLost: async (lost: LostInterface) => {}
+    editLost: async (lost: LostInterface) => {},
+    deleteLost: async (id: number | string) => {},
 });
 
 export default Context

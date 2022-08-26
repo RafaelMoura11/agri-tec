@@ -10,7 +10,7 @@ type Props = {
 }
 
 const LostForm: React.FC<Props> = ({ lost, setLost }) => {
-    const { editLost } = useContext(Context);
+    const { editLost, deleteLost } = useContext(Context);
     const onChangeHandler = (name: string, value: string | number) => {
         setLost({ ...lost, [name]: value, })
     }
@@ -112,7 +112,7 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
                 </div>
             </div>
             <button className="btn btn-primary" type="submit">Salvar</button>
-            <button type="button" className="btn btn-danger">Deletar</button>
+            <button type="button" className="btn btn-danger" onClick={ () => lost.id && deleteLost(lost.id) } >Deletar</button>
         </form>
     )
 }
