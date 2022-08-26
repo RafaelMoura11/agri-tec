@@ -17,6 +17,13 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
         setLost({ ...lost, [name]: value, })
     }
 
+    const onSubmitHandler = async (e: any) => {
+        e.preventDefault()
+        await editLost(lost)
+        await getLosts()
+        return navigate('/')
+    }
+
     const onDeleteHandler = async () => {
         if (lost.id) {
             await deleteLost(lost.id)
@@ -26,12 +33,7 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
     }
 
     return (
-        <form onSubmit={ async (e: any) => {
-            e.preventDefault()
-            await editLost(lost)
-            await getLosts()
-            return navigate('/')
-        } }>
+        <form onSubmit={ (e: any) => onSubmitHandler(e) }>
             <div className="mb-3">
                 <label className="small mb-1" htmlFor="name">Nome</label>
                 <input
