@@ -1,42 +1,49 @@
-const LostForm: React.FC = () => {
+import LostInterface from "../interfaces/LostInterface";
+
+type Props = {
+    lost: LostInterface;
+    setLost: React.Dispatch<React.SetStateAction<LostInterface>>;
+}
+
+const LostForm: React.FC<Props> = () => {
     return (
         <form>
             <div className="mb-3">
-                <label className="small mb-1" htmlFor="inputUsername">Nome</label>
-                <input className="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="username" />
+                <label className="small mb-1" htmlFor="name">Nome</label>
+                <input className="form-control" id="name" type="text" placeholder="Digite o nome do(a) Agricultor(a)" value="name" />
             </div>
             <div className="row gx-3 mb-3">
                 <div className="col-md-6">
-                    <label className="small mb-1" htmlFor="inputFirstName">Latitude</label>
-                    <input className="form-control" id="inputFirstName" type="text" placeholder="Digite o Latitude" value="Valerie" />
+                    <label className="small mb-1" htmlFor="latitude">Latitude</label>
+                    <input className="form-control" id="latitude" type="text" placeholder="Digite a Latitude da localização" value="Valerie" />
                 </div>
                 <div className="col-md-6">
-                    <label className="small mb-1" htmlFor="inputLastName">Longitude</label>
-                    <input className="form-control" id="inputLastName" type="text" placeholder="Enter your Longitude" value="Luna" />
+                    <label className="small mb-1" htmlFor="longitude">Longitude</label>
+                    <input className="form-control" id="longitude" type="text" placeholder="Digite a Longitude da localização" value="Luna" />
                 </div>
             </div>
             <div className="row gx-3 mb-3">
                 <div className="col-md-6">
-                    <label className="small mb-1" htmlFor="inputOrgName">Tipo da lavoura</label>
-                    <input className="form-control" id="inputOrgName" type="text" placeholder="Enter your Tipo da lavoura" value="Start Bootstrap" />
+                    <label className="small mb-1" htmlFor="type">Tipo da lavoura</label>
+                    <input className="form-control" id="type" type="text" placeholder="Digite o tipo de lavoura do(a) Agricultor(a)" value="Start Bootstrap" />
                 </div>
                 <div className="col-md-6">
-                    <label className="small mb-1" htmlFor="inputLocation">Evento causador</label>
-                    <input className="form-control" id="inputLocation" type="text" placeholder="Enter your Evento causador" value="San Francisco, CA" />
+                    <label className="small mb-1" htmlFor="event">Evento causador</label>
+                    <input className="form-control" id="event" type="text" placeholder="Digite o Evento Causador da Perda" value="San Francisco, CA" />
                 </div>
             </div>
             <div className="mb-3">
-                <label className="small mb-1" htmlFor="inputEmailAddress">Email address</label>
-                <input className="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="name@example.com" />
+                <label className="small mb-1" htmlFor="email">Email</label>
+                <input className="form-control" id="email" type="email" placeholder="Digite o email do(a) Agricultor(a)" value="name@example.com" />
             </div>
             <div className="row gx-3 mb-3">
                 <div className="col-md-6">
-                    <label className="small mb-1" htmlFor="inputPhone">Phone number</label>
-                    <input className="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="555-123-4567" />
+                    <label className="small mb-1" htmlFor="cpf">CPF</label>
+                    <input className="form-control" id="cpf" type="tel" placeholder="Digite o CPF do(a) Agricultor(a)" value="555-123-4567" />
                 </div>
                 <div className="col-md-6">
-                    <label className="small mb-1" htmlFor="inputBirthday">Birthday (DD/MM/AAAA)</label>
-                    <input className="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="DD/MM/AAAA" />
+                    <label className="small mb-1" htmlFor="date">Data do ocorrido</label>
+                    <input className="form-control" id="date" type="text" name="birthday" placeholder="Digite a data do ocorrido" value="DD/MM/AAAA" />
                 </div>
             </div>
             <button className="btn btn-primary" type="button">Save changes</button>

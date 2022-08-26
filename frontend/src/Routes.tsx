@@ -6,7 +6,7 @@ export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={ <Home /> } />
-      <Route path="/details" element={ <LostDetails /> } />
+      <Route path="/details/:id" element={ <LostDetails /> } />
     </Routes>
   );
 }
