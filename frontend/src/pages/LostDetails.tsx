@@ -21,7 +21,6 @@ const LostDetails: React.FC = () => {
     useEffect(() => {
         const fetchLostById = async () => {
           const { data } = await api.get(`/api/losts/${id}`)
-          console.log(data)
           setLost(data)
         }
         fetchLostById()
