@@ -1,3 +1,4 @@
+import Navbar from "../components/Navbar";
 import LostForm from "../components/LostForm";
 import { Navigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
@@ -28,14 +29,16 @@ const LostDetails: React.FC = () => {
     
     if (!id) return <Navigate to="/" />
     return (
-        <div className="container-xl px-4 mt-4">
-            <hr className="mt-0 mb-4" />
-            <div className="row">
-                <div className="col-xl">
-                    <div className="card mb-4">
-                        <div className="card-header">Account Details</div>
-                        <div className="card-body">
-                            <LostForm lost={ lost } setLost={ setLost } />
+        <div>
+            <Navbar />
+            <div className="container-xl px-4 mt-4">
+                <div className="row">
+                    <div className="col-xl">
+                        <div className="card mb-4">
+                            <div className="card-header">Account Details</div>
+                            <div className="card-body">
+                                <LostForm lost={ lost } setLost={ setLost } />
+                            </div>
                         </div>
                     </div>
                 </div>

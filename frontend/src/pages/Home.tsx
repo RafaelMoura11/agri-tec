@@ -1,8 +1,12 @@
+import Navbar from "../components/Navbar";
 import Losts from "../components/Losts";
 
 const Home: React.FC = () => {
     return (
-        <Losts />
+        <div>
+            <Navbar />
+            <Losts />
+        </div>
     )
 }
 

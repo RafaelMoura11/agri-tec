@@ -1,3 +1,19 @@
+/* Navbar */
+
+.nav {
+    background-color: #333;
+    border-bottom: 1px solid #333;
+    margin-bottom: 20px;
+}
+  
+.navbar-brand {
+    font-weight: bold;
+    color: yellow;
+}
+
+
+  /* Form */
+
 .form-select {
     width: 100%;
     height: calc(1.5em + .75rem + 2px);
