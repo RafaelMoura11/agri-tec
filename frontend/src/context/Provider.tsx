@@ -20,7 +20,8 @@ function Provider({ children }: Props) {
 
   const createLost = async (lost: LostInterface) => {
     try {
-      await api.post(`/api/losts`, lost)
+      const { id, ...lostWithoutId } = lost
+      await api.post(`/api/losts`, lostWithoutId)
     } catch (e) {
       console.log(e)
     }
