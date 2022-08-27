@@ -18,6 +18,15 @@ function Provider({ children }: Props) {
   }
 
 
+  const createLost = async (lost: LostInterface) => {
+    try {
+      await api.post(`/api/losts`, lost)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+
   const editLost = async (lost: LostInterface) => {
     try {
       await api.put(`/api/losts/${lost.id}`, lost)
@@ -44,6 +53,7 @@ function Provider({ children }: Props) {
   const contextValue = {
     losts,
     getLosts,
+    createLost,
     editLost,
     deleteLost,
   }
