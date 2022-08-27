@@ -10,6 +10,7 @@ type Props = {
 
 function Provider({ children }: Props) {
   const [losts, setLosts] = useState<LostInterface[]>([])
+  const [searchByCPF, setSearchByCPF] = useState<string>('')
 
 
   const getLosts = async () => {
@@ -57,6 +58,8 @@ function Provider({ children }: Props) {
     createLost,
     editLost,
     deleteLost,
+    searchByCPF,
+    setSearchByCPF
   }
 
   return (

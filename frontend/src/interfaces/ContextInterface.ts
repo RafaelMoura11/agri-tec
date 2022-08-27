@@ -6,6 +6,8 @@ interface ContextInterface {
     createLost: (lost: LostInterface) => Promise<void>;
     editLost: (lost: LostInterface) => Promise<void>;
     deleteLost: (id: number | string) => Promise<void>;
+    searchByCPF: string;
+    setSearchByCPF: React.Dispatch<React.SetStateAction<string>>
 }
 
 export default ContextInterface;

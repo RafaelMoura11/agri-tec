@@ -8,6 +8,8 @@ const Context = createContext<ContextInterface>({
     createLost: async (lost: LostInterface) => {},
     editLost: async (lost: LostInterface) => {},
     deleteLost: async (id: number | string) => {},
+    searchByCPF: '',
+    setSearchByCPF: () => {}
 });
 
 export default Context
