@@ -1,10 +1,12 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import LostInterface from "../interfaces/LostInterface";
-import EventSelect from "./EventSelect";
 import { useNavigate, useLocation } from 'react-router-dom';
-
 import { Context } from '../context/Provider';
-import DeleteButton from './DeleteButton';
+import { checkFields } from '../utils/checkFields'
+
+
+import EventSelect from './lostform_components/EventSelect';
+import DeleteButton from './lostform_components/DeleteButton';
 import NameInput from './lostform_components/NameInput';
 import LatitudeInput from './lostform_components/LatitudeInput';
 import LongitudeInput from './lostform_components/LongitudeInput';
@@ -21,13 +23,24 @@ type Props = {
 const LostForm: React.FC<Props> = ({ lost, setLost }) => {
     const { pathname } = useLocation();
     const navigate = useNavigate();
+    const [invalidFields, setInvalidFields] = useState<string[]>([])
     const { getLosts, createLost, editLost, deleteLost } = useContext(Context);
     const onChangeHandler = (name: string, value: string | number) => {
         setLost({ ...lost, [name]: value, })
     }
 
+
+    const alertInvalidFields = () => {
+        setInvalidFields(checkFields(lost))
+        setTimeout(() => {
+            setInvalidFields([])
+        }, 4000)
+    }
+
+
     const onSubmitHandler = async (e: any) => {
         e.preventDefault()
+        if (checkFields(lost).length) return alertInvalidFields()
         if (pathname.includes('details')) {
             await editLost(lost)
         } else {
@@ -49,19 +62,19 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
 
     return (
         <form onSubmit={ (e: any) => onSubmitHandler(e) }>
-            <NameInput lost={ lost } onChangeHandler={ onChangeHandler } />
+            <NameInput lost={ lost } onChangeHandler={ onChangeHandler } invalidFields={ invalidFields } />
             <div className="row gx-3 mb-3">
-                <LatitudeInput lost={ lost } onChangeHandler={ onChangeHandler } />
-                <LongitudeInput lost={ lost } onChangeHandler={ onChangeHandler } />
+                <LatitudeInput lost={ lost } onChangeHandler={ onChangeHandler } invalidFields={ invalidFields } />
+                <LongitudeInput lost={ lost } onChangeHandler={ onChangeHandler } invalidFields={ invalidFields } />
             </div>
             <div className="row gx-3 mb-3">
-                <EventSelect lost={ lost } onChangeHandler={ onChangeHandler } />
-                <TypeInput lost={ lost } onChangeHandler={ onChangeHandler } />
+                <EventSelect lost={ lost } onChangeHandler={ onChangeHandler } invalidFields={ invalidFields } />
+                <TypeInput lost={ lost } onChangeHandler={ onChangeHandler } invalidFields={ invalidFields } />
             </div>
-            <EmailInput lost={ lost } onChangeHandler={ onChangeHandler } />
+            <EmailInput lost={ lost } onChangeHandler={ onChangeHandler } invalidFields={ invalidFields } />
             <div className="row gx-3 mb-3">
-                <CPFInput lost={ lost } onChangeHandler={ onChangeHandler } />
-                <DateInput lost={ lost } onChangeHandler={ onChangeHandler } />
+                <CPFInput lost={ lost } onChangeHandler={ onChangeHandler } invalidFields={ invalidFields } />
+                <DateInput lost={ lost } onChangeHandler={ onChangeHandler } invalidFields={ invalidFields } />
             </div>
             <button className="btn btn-primary" id="save-btn" type="submit">Salvar</button>
             {

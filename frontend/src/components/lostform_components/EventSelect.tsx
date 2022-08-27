@@ -1,11 +1,6 @@
-import LostInterface from "../interfaces/LostInterface";
+import Props from "../../interfaces/LostFormInputProps";
 
-type Props = {
-    onChangeHandler: (name: string, value: string | number) => void;
-    lost: LostInterface
-}
-
-const EventSelect: React.FC<Props> = ({ onChangeHandler, lost }) => {
+const EventSelect: React.FC<Props> = ({ onChangeHandler, lost, invalidFields }) => {
     const options = ['Chuva excessiva', 'Geada', 'Granizo', 'Seca', 'Vendaval', 'Raio'];
 
     return (
@@ -13,7 +8,7 @@ const EventSelect: React.FC<Props> = ({ onChangeHandler, lost }) => {
             <label className="small mb-1" htmlFor="event">Evento causador</label>
             <br />
             <select
-                className="form-select"
+                className={ invalidFields.includes('event') ? 'form-select invalid-field' :  'form-select' }
                 id="event"
                 name="event"
                 onChange={ ({ target: { name, value } }) => onChangeHandler(name, value) }
@@ -27,6 +22,9 @@ const EventSelect: React.FC<Props> = ({ onChangeHandler, lost }) => {
                     ))
                 }
             </select>
+            { invalidFields.includes('event') && (
+                <small id="event" className="form-text text-muted">Selecione um evento</small>
+            ) }
         </div>
     )
 }
