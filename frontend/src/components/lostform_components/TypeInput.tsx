@@ -1,9 +1,4 @@
-import LostInterface from "../../interfaces/LostInterface"
-
-type Props = {
-    lost: LostInterface;
-    onChangeHandler: (name: string, value: string | number) => void;
-}
+import Props from "../../interfaces/LostFormInputProps"
 
 const TypeInput: React.FC<Props> = ({ lost, onChangeHandler }) => {
     return (
