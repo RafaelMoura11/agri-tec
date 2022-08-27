@@ -30,7 +30,7 @@ const DeleteButton: React.FC<Props> = ({ onDeleteHandler }) => {
             </Modal.Body>
             <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
-                Cancelar
+                Não
             </Button>
             <Button variant="danger" onClick={ onDeleteHandler }>Sim</Button>
             </Modal.Footer>
