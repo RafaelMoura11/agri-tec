@@ -7,6 +7,7 @@ export default function AppRoutes() {
     <Routes>
       <Route path="/" element={ <Home /> } />
       <Route path="/details/:id" element={ <LostDetails /> } />
+      <Route path="/register" element={ <LostDetails /> } />
     </Routes>
   );
 }

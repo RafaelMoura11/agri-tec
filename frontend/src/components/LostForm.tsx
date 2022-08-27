@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import LostInterface from "../interfaces/LostInterface";
 import EventSelect from "./EventSelect";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import { Context } from '../context/Provider';
 
@@ -11,15 +11,20 @@ type Props = {
 }
 
 const LostForm: React.FC<Props> = ({ lost, setLost }) => {
-    const navigate = useNavigate()
-    const { getLosts, editLost, deleteLost } = useContext(Context);
+    const { pathname } = useLocation();
+    const navigate = useNavigate();
+    const { getLosts, createLost, editLost, deleteLost } = useContext(Context);
     const onChangeHandler = (name: string, value: string | number) => {
         setLost({ ...lost, [name]: value, })
     }
 
     const onSubmitHandler = async (e: any) => {
         e.preventDefault()
-        await editLost(lost)
+        if (pathname.includes('details')) {
+            await editLost(lost)
+        } else {
+            await createLost(lost)
+        }
         await getLosts()
         return navigate('/')
     }
@@ -31,6 +36,8 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
             return navigate('/')
         }
     }
+
+    const onCancelHandler = () => navigate('/')
 
     return (
         <form onSubmit={ (e: any) => onSubmitHandler(e) }>
@@ -125,8 +132,13 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
                     />
                 </div>
             </div>
-            <button className="btn btn-primary" type="submit">Salvar</button>
-            <button type="button" className="btn btn-danger" onClick={ onDeleteHandler } >Deletar</button>
+            <button className="btn btn-primary" id="save-btn" type="submit">Salvar</button>
+            {
+                pathname.includes('details') && (
+                <button type="button" className="btn btn-danger" id="delete-btn" onClick={ onDeleteHandler } >Deletar</button>
+                )
+            }
+            <button type="button" className="btn btn-secondary" id="cancel-btn" onClick={ onCancelHandler }>Cancelar</button>
         </form>
     )
 }

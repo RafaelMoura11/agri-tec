@@ -23,6 +23,19 @@
     transition: border-color .15s
 }
 
+.title {
+    text-align: start;
+    white-space: nowrap;
+}
+
+#delete-btn {
+    margin-left: 5px;
+}
+
+#cancel-btn {
+    margin-left: 5px;
+}
+
 
 /* Pagina de lista de perdas */
 
