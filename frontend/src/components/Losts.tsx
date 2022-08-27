@@ -5,7 +5,7 @@ import LostCard from './LostCard';
 const Losts: React.FC = () => {
     const { losts } = useContext(Context);
     return (
-        <ul>
+        <ul className="lost-list">
             {
                 losts.map((lost) => (
                     <LostCard lost={ lost } key={ lost.id } />

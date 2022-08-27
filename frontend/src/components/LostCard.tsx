@@ -6,10 +6,12 @@ type Props = {
 
 const LostCard: React.FC<Props> = ({ lost }) => {
     return (
-        <li>
-            {
-                lost.name
-            }
+        <li className="lost">
+            <a href={ `/details/${lost.id}` } className="lost-link">
+                {
+                    lost.name
+                }
+            </a>
         </li>
     )
 }
