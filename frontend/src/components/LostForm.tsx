@@ -4,6 +4,7 @@ import EventSelect from "./EventSelect";
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { Context } from '../context/Provider';
+import DeleteButton from './DeleteButton';
 
 type Props = {
     lost: LostInterface;
@@ -135,7 +136,7 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
             <button className="btn btn-primary" id="save-btn" type="submit">Salvar</button>
             {
                 pathname.includes('details') && (
-                <button type="button" className="btn btn-danger" id="delete-btn" onClick={ onDeleteHandler } >Deletar</button>
+                <DeleteButton onDeleteHandler={ onDeleteHandler } />
                 )
             }
             <button type="button" className="btn btn-secondary" id="cancel-btn" onClick={ onCancelHandler }>Cancelar</button>
