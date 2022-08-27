@@ -24,7 +24,12 @@
 }
 
 
-/* Listagem de perdas */
+/* Pagina de lista de perdas */
+
+#new-user-button {
+    margin-top: 40px;
+    margin-left: 20px;
+}
 
 .list-title {
     text-align: center;
