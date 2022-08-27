@@ -5,6 +5,13 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import { Context } from '../context/Provider';
 import DeleteButton from './DeleteButton';
+import NameInput from './lostform_components/NameInput';
+import LatitudeInput from './lostform_components/LatitudeInput';
+import LongitudeInput from './lostform_components/LongitudeInput';
+import TypeInput from './lostform_components/TypeInput';
+import EmailInput from './lostform_components/EmailInput';
+import CPFInput from './lostform_components/CPFInput';
+import DateInput from './lostform_components/DateInput';
 
 type Props = {
     lost: LostInterface;
@@ -42,96 +49,19 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
 
     return (
         <form onSubmit={ (e: any) => onSubmitHandler(e) }>
-            <div className="mb-3">
-                <label className="small mb-1" htmlFor="name">Nome</label>
-                <input
-                    className="form-control"
-                    id="name"
-                    type="text"
-                    placeholder="Digite o nome do(a) Agricultor(a)"
-                    value={ lost.name }
-                    name="name"
-                    onChange={ ({ target: { name, value } }) => onChangeHandler(name, value) }
-                />
-            </div>
+            <NameInput lost={ lost } onChangeHandler={ onChangeHandler } />
             <div className="row gx-3 mb-3">
-                <div className="col-md-6">
-                    <label className="small mb-1" htmlFor="latitude">Latitude</label>
-                    <input
-                        className="form-control"
-                        id="latitude"
-                        type="text"
-                        placeholder="Digite a Latitude da localização"
-                        value={ lost.latitude }
-                        name="latitude"
-                        onChange={ ({ target: { name, value } }) => onChangeHandler(name, Number(value)) }
-                    />
-                </div>
-                <div className="col-md-6">
-                    <label className="small mb-1" htmlFor="longitude">Longitude</label>
-                    <input
-                        className="form-control"
-                        id="longitude"
-                        type="text"
-                        placeholder="Digite a Longitude da localização"
-                        value={ lost.longitude }
-                        name="longitude"
-                        onChange={ ({ target: { name, value } }) => onChangeHandler(name, Number(value)) }
-                    />
-                </div>
+                <LatitudeInput lost={ lost } onChangeHandler={ onChangeHandler } />
+                <LongitudeInput lost={ lost } onChangeHandler={ onChangeHandler } />
             </div>
             <div className="row gx-3 mb-3">
                 <EventSelect lost={ lost } onChangeHandler={ onChangeHandler } />
-                <div className="col-md-6">
-                    <label className="small mb-1" htmlFor="type">Tipo da lavoura</label>
-                    <input
-                    className="form-control"
-                    id="type"
-                    type="text"
-                    placeholder="Digite o tipo da lavoura"
-                    value={ lost.type }
-                    name="type"
-                    onChange={ ({ target: { name, value } }) => onChangeHandler(name, value) }
-                    />
-                </div>
+                <TypeInput lost={ lost } onChangeHandler={ onChangeHandler } />
             </div>
-            <div className="mb-3">
-                <label className="small mb-1" htmlFor="email">Email</label>
-                <input
-                className="form-control"
-                id="email"
-                type="email"
-                placeholder="Digite o email do(a) Agricultor(a)"
-                value={ lost.email }
-                name="email"
-                onChange={ ({ target: { name, value } }) => onChangeHandler(name, value) }
-                />
-            </div>
+            <EmailInput lost={ lost } onChangeHandler={ onChangeHandler } />
             <div className="row gx-3 mb-3">
-                <div className="col-md-6">
-                    <label className="small mb-1" htmlFor="cpf">CPF</label>
-                    <input
-                        className="form-control"
-                        id="cpf"
-                        type="tel"
-                        placeholder="Digite o CPF do(a) Agricultor(a)"
-                        value={ lost.cpf }
-                        name="cpf"
-                        onChange={ ({ target: { name, value } }) => onChangeHandler(name, value) }
-                    />
-                </div>
-                <div className="col-md-6">
-                    <label className="small mb-1" htmlFor="date">Data do ocorrido</label>
-                    <input
-                        className="form-control"
-                        id="date"
-                        type="text"
-                        placeholder="Digite a data do ocorrido"
-                        value={ lost.date }
-                        name="date"
-                        onChange={ ({ target: { name, value } }) => onChangeHandler(name, value) }
-                    />
-                </div>
+                <CPFInput lost={ lost } onChangeHandler={ onChangeHandler } />
+                <DateInput lost={ lost } onChangeHandler={ onChangeHandler } />
             </div>
             <button className="btn btn-primary" id="save-btn" type="submit">Salvar</button>
             {
