@@ -14,6 +14,10 @@ import TypeInput from './lostform_components/TypeInput';
 import EmailInput from './lostform_components/EmailInput';
 import CPFInput from './lostform_components/CPFInput';
 import DateInput from './lostform_components/DateInput';
+import Alert from '../components/lostform_components/Alert'
+
+
+import checkEvent from '../utils/checkIfEventIsReal';
 
 type Props = {
     lost: LostInterface;
@@ -24,7 +28,8 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
     const { pathname } = useLocation();
     const navigate = useNavigate();
     const [invalidFields, setInvalidFields] = useState<string[]>([])
-    const { getLosts, createLost, editLost, deleteLost } = useContext(Context);
+    const [alert, setAlert] = useState<{ show: boolean, lostId: number }>({ show: false, lostId: 0})
+    const { getLosts, createLost, editLost, deleteLost, losts, setLosts } = useContext(Context);
     const onChangeHandler = (name: string, value: string | number) => {
         setLost({ ...lost, [name]: value, })
     }
@@ -38,22 +43,30 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
     }
 
 
+
     const onSubmitHandler = async (e: any) => {
         e.preventDefault()
+        const prevData = await getLosts()
         if (checkFields(lost).length) return alertInvalidFields()
+        const divergentEvent = checkEvent(prevData, lost)
+        if (divergentEvent && divergentEvent.id) {
+                return setAlert({ show: true, lostId: Number(divergentEvent.id) })
+        }
         if (pathname.includes('details')) {
             await editLost(lost)
         } else {
             await createLost(lost)
         }
-        await getLosts()
+        const curData = await getLosts()
+        setLosts(curData)
         return navigate('/')
     }
 
     const onDeleteHandler = async () => {
         if (lost.id) {
             await deleteLost(lost.id)
-            await getLosts()
+            const data = await getLosts()
+            setLosts(data)
             return navigate('/')
         }
     }
@@ -62,6 +75,7 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
 
     return (
         <form onSubmit={ (e: any) => onSubmitHandler(e) }>
+            <Alert alert={ alert } setAlert={ setAlert } />
             <NameInput lost={ lost } onChangeHandler={ onChangeHandler } invalidFields={ invalidFields } />
             <div className="row gx-3 mb-3">
                 <LatitudeInput lost={ lost } onChangeHandler={ onChangeHandler } invalidFields={ invalidFields } />
