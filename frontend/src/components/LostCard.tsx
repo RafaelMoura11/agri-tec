@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import LostInterface from "../interfaces/LostInterface";
 
 type Props = {
@@ -5,14 +6,16 @@ type Props = {
 }
 
 const LostCard: React.FC<Props> = ({ lost }) => {
+    const navigate = useNavigate();
     return (
-        <li className="lost">
-            <a href={ `/details/${lost.id}` } className="lost-link">
-                {
-                    lost.name
-                }
-            </a>
-        </li>
+        <tr className="tbody-row" onClick={ () => navigate(`/details/${lost.id}`) }>
+            <td className="text-truncate">{ lost.id }</td>
+            <td className="text-truncate">{ lost.name }</td>
+            <td className="text-truncate">{ lost.cpf }</td>
+            <td className="text-truncate">{ lost.type }</td>
+            <td className="text-truncate">{ lost.event }</td>
+            <td className="text-truncate">{ lost.date }</td>
+        </tr>
     )
 }
 
