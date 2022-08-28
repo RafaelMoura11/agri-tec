@@ -8,7 +8,7 @@ const Losts: React.FC = () => {
             <div className="col-12 col-sm-12 col-md-12">
                 <div className="card">
                     <div className="card-header">
-                        <h4>Project Team</h4>
+                        <h4>Comunicações de perda</h4>
                     </div>
                     <div className="card-body">
                         <div className="media-list position-relative">
