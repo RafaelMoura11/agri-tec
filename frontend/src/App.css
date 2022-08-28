@@ -47,6 +47,11 @@
 
 /* Pagina de lista de perdas */
 
+#search-bar {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
 #project-team-scroll {
     height: 400px;
     overflow: hidden;
