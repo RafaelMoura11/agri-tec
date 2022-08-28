@@ -15,7 +15,7 @@ function Provider({ children }: Props) {
 
   const getLosts = async () => {
     const { data } = await api.get('/api/losts')
-    setLosts(data)
+    return data
   }
 
 
@@ -48,7 +48,11 @@ function Provider({ children }: Props) {
 
 
   useEffect(() => {
-    getLosts()
+    const fetchLosts = async () => {
+      const data = await getLosts()
+      setLosts(data)
+    }
+    fetchLosts()
   }, [])
 
 
@@ -59,7 +63,8 @@ function Provider({ children }: Props) {
     editLost,
     deleteLost,
     searchByCPF,
-    setSearchByCPF
+    setSearchByCPF,
+    setLosts
   }
 
   return (

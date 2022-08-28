@@ -4,12 +4,13 @@ import LostInterface from '../interfaces/LostInterface';
 
 const Context = createContext<ContextInterface>({
     losts: [],
-    getLosts: async () => {},
+    getLosts: async () => [],
     createLost: async (lost: LostInterface) => {},
     editLost: async (lost: LostInterface) => {},
     deleteLost: async (id: number | string) => {},
     searchByCPF: '',
-    setSearchByCPF: () => {}
+    setSearchByCPF: () => {},
+    setLosts: () => {}
 });
 
 export default Context
