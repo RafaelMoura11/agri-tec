@@ -6,7 +6,6 @@ import { checkFields } from '../utils/checkFields'
 
 
 import EventSelect from './lostform_components/EventSelect';
-import DeleteButton from './lostform_components/DeleteButton';
 import NameInput from './lostform_components/NameInput';
 import LatitudeInput from './lostform_components/LatitudeInput';
 import LongitudeInput from './lostform_components/LongitudeInput';
@@ -14,7 +13,8 @@ import TypeInput from './lostform_components/TypeInput';
 import EmailInput from './lostform_components/EmailInput';
 import CPFInput from './lostform_components/CPFInput';
 import DateInput from './lostform_components/DateInput';
-import Alert from '../components/lostform_components/Alert'
+import Alert from './lostform_components/Alert';
+import FormButtons from './lostform_components/FormButtons';
 
 
 import checkEvent from '../utils/checkIfEventIsReal';
@@ -29,7 +29,7 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
     const navigate = useNavigate();
     const [invalidFields, setInvalidFields] = useState<string[]>([])
     const [alert, setAlert] = useState<{ show: boolean, lostId: number }>({ show: false, lostId: 0})
-    const { getLosts, createLost, editLost, deleteLost, losts, setLosts } = useContext(Context);
+    const { getLosts, createLost, editLost, deleteLost, setLosts } = useContext(Context);
     const onChangeHandler = (name: string, value: string | number) => {
         setLost({ ...lost, [name]: value, })
     }
@@ -48,10 +48,12 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
         e.preventDefault()
         const prevData = await getLosts()
         if (checkFields(lost).length) return alertInvalidFields()
+
         const divergentEvent = checkEvent(prevData, lost)
         if (divergentEvent && divergentEvent.id) {
                 return setAlert({ show: true, lostId: Number(divergentEvent.id) })
         }
+
         if (pathname.includes('details')) {
             await editLost(lost)
         } else {
@@ -90,13 +92,7 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
                 <CPFInput lost={ lost } onChangeHandler={ onChangeHandler } invalidFields={ invalidFields } />
                 <DateInput lost={ lost } onChangeHandler={ onChangeHandler } invalidFields={ invalidFields } />
             </div>
-            <button className="btn btn-primary" id="save-btn" type="submit">Salvar</button>
-            {
-                pathname.includes('details') && (
-                <DeleteButton onDeleteHandler={ onDeleteHandler } />
-                )
-            }
-            <button type="button" className="btn btn-secondary" id="cancel-btn" onClick={ onCancelHandler }>Cancelar</button>
+            <FormButtons onCancelHandler={ onCancelHandler } onDeleteHandler={ onDeleteHandler } pathname={ pathname } />
         </form>
     )
 }

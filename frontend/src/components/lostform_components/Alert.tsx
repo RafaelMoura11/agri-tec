@@ -9,7 +9,7 @@ type Props = {
   setAlert: React.Dispatch<React.SetStateAction<{show: boolean; lostId: number}>>
 }
 
-const DeleteButton: React.FC<Props> = ({ alert, setAlert }) => {
+const Alert: React.FC<Props> = ({ alert, setAlert }) => {
 
     useEffect(() => {
         return () => {
@@ -28,7 +28,7 @@ const DeleteButton: React.FC<Props> = ({ alert, setAlert }) => {
                 <Modal.Title>Aviso</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                Possui um evento divergente em um raio de 10 km nessa mesma data:
+                Possui um evento divergente em um raio de 10 km nessa mesma data
                 </Modal.Body>
                 <Modal.Footer>
                 <a href={ `/details/${alert.lostId}` }>
@@ -42,4 +42,4 @@ const DeleteButton: React.FC<Props> = ({ alert, setAlert }) => {
     );
 }
 
-export default DeleteButton;
+export default Alert;
