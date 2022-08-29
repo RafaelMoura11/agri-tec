@@ -7,7 +7,7 @@ class Server():
         self.app = Flask(__name__)
         CORS(self.app)
         self.bluePrint = Blueprint('api', __name__, url_prefix='/api')
-        self.api = Api(self.bluePrint, title='Softfocus Test')
+        self.api = Api(self.bluePrint, title='Softfocus Test', description='API criada para gerenciar chamadas de perdas', default='SoftFocus', default_label='API')
         self.app.register_blueprint(self.bluePrint)
 
         self.app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
