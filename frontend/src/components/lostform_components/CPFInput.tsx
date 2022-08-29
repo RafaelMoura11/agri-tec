@@ -12,6 +12,7 @@ const CPFInput: React.FC<Props> = ({ lost, onChangeHandler, invalidFields }) => 
                 value={ lost.cpf }
                 name="cpf"
                 onChange={ ({ target: { name, value } }) => onChangeHandler(name, value) }
+                maxLength={ 11 }
             />
             { invalidFields.includes('cpf') && (
                 <small id="cpf" className="form-text text-muted">CPF inválido</small>

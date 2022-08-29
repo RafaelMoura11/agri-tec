@@ -12,6 +12,7 @@ const DateInput: React.FC<Props> = ({ lost, onChangeHandler, invalidFields }) =>
                 value={ lost.date }
                 name="date"
                 onChange={ ({ target: { name, value } }) => onChangeHandler(name, value) }
+                maxLength={ 10 }
             />
             { invalidFields.includes('date') && (
                 <small id="date" className="form-text text-muted">Formato da data inválido</small>
