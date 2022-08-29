@@ -49,6 +49,8 @@ Esse comando irá, automaticamente, subir o backend e o frontend da aplicação.
 http://localhost:3000
 ```
 
+Vale lembrar que esse processo pode demorar um pouco mais em computadores mais lentos (assim como o meu 😁), então depois que os containers estiverem rodando, espere pelo menos 1 minuto para ter certeza de que a url já está livre para ser acessada
+
 
 ## Como iniciar o servidor (Manual)
 
