@@ -18,7 +18,7 @@ const EventSelect: React.FC<Props> = ({ onChangeHandler, lost, invalidFields }) 
                 <option value='' key="default">Escolha o evento causador</option>
                 {
                     options.map((option, index) => (
-                        <option value={ option.toLowerCase() } key={ index }>{ option }</option>
+                        <option value={ option } key={ index }>{ option }</option>
                     ))
                 }
             </select>
