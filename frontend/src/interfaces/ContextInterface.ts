@@ -3,6 +3,7 @@ import LostInterface from "./LostInterface";
 interface ContextInterface {
     losts: LostInterface[];
     getLosts: () => Promise<LostInterface[]>;
+    getLostById: (id: number | string) => Promise<LostInterface>;
     createLost: (lost: LostInterface) => Promise<void>;
     editLost: (lost: LostInterface) => Promise<void>;
     deleteLost: (id: number | string) => Promise<void>;

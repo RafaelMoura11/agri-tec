@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Context from './Context';
 import LostInterface from '../interfaces/LostInterface';
-import { getLosts, createLost, editLost, deleteLost } from '../utils/apiFunctions'
+import { getLosts, getLostById, createLost, editLost, deleteLost } from '../utils/apiFunctions'
 
 
 type Props = {
@@ -30,7 +30,8 @@ function Provider({ children }: Props) {
     deleteLost,
     searchByCPF,
     setSearchByCPF,
-    setLosts
+    setLosts,
+    getLostById
   }
 
   return (

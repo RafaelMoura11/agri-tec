@@ -1,29 +1,21 @@
 import Navbar from "../components/Navbar";
 import LostForm from "../components/LostForm";
 import { useParams, useLocation } from 'react-router-dom';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { Context } from '../context/Provider';
 import LostInterface from "../interfaces/LostInterface";
-import api from '../api';
+import lostInstance from "../instances/LostInstance";
 
 const LostDetails: React.FC = () => {
     const { pathname } = useLocation();
     const { id } = useParams();
-    const [lost, setLost] = useState<LostInterface>({
-        id: 0,
-        cpf: '',
-        date: '',
-        email: '',
-        event: '',
-        latitude: 0,
-        longitude: 0,
-        name: '',
-        type: ''
-    })
+    const [lost, setLost] = useState<LostInterface>(lostInstance)
+    const { getLostById } = useContext(Context);
 
     useEffect(() => {
         if (id) {
             const fetchLostById = async () => {
-              const { data } = await api.get(`/api/losts/${id}`)
+              const data = await getLostById(id)
               setLost(data)
             }
             fetchLostById()

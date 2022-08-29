@@ -6,6 +6,11 @@ import api from '../api';
         return data
     }
 
+    const getLostById = async (id: number | string) => {
+        const { data } = await api.get(`/api/losts/${id}`)
+        return data
+    }
+
 
     const createLost = async (lost: LostInterface) => {
         try {
@@ -34,4 +39,4 @@ import api from '../api';
         }
     }
 
-    export { getLosts, createLost, editLost, deleteLost }
+    export { getLosts, getLostById, createLost, editLost, deleteLost }
