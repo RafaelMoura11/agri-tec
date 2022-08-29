@@ -3,7 +3,7 @@ import Props from "../../interfaces/LostFormInputProps"
 const CPFInput: React.FC<Props> = ({ lost, onChangeHandler, invalidFields }) => {
     return (
         <div className="col-md-6">
-            <label className="small mb-1" htmlFor="cpf">CPF</label>
+            <label className="small mb-1" htmlFor="cpf">CPF (Digite apenas os números)</label>
             <input
                 className={ invalidFields.includes('cpf') ? 'form-control invalid-field' :  'form-control' }
                 id="cpf"
