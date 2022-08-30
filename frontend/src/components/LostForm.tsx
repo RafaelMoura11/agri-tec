@@ -27,10 +27,12 @@ type Props = {
 const LostForm: React.FC<Props> = ({ lost, setLost }) => {
     const { pathname } = useLocation();
     const navigate = useNavigate();
+    const [shouldSave, setShouldSave] = useState<boolean>(false);
     const [invalidFields, setInvalidFields] = useState<string[]>([])
     const [alert, setAlert] = useState<{ show: boolean, lostId: number }>({ show: false, lostId: 0})
     const { getLosts, createLost, editLost, deleteLost, setLosts } = useContext(Context);
     const onChangeHandler = (name: string, value: string | number) => {
+        setShouldSave(true)
         setLost({ ...lost, [name]: value, })
     }
 
@@ -55,7 +57,9 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
         }
 
         if (pathname.includes('details')) {
-            await editLost(lost)
+            if (shouldSave) {
+                await editLost(lost)
+            }
         } else {
             await createLost(lost)
         }
@@ -92,7 +96,13 @@ const LostForm: React.FC<Props> = ({ lost, setLost }) => {
                 <CPFInput lost={ lost } onChangeHandler={ onChangeHandler } invalidFields={ invalidFields } />
                 <DateInput lost={ lost } onChangeHandler={ onChangeHandler } invalidFields={ invalidFields } />
             </div>
-            <FormButtons onCancelHandler={ onCancelHandler } onDeleteHandler={ onDeleteHandler } pathname={ pathname } />
+            <FormButtons
+                onCancelHandler={ onCancelHandler }
+                onDeleteHandler={ onDeleteHandler }
+                onSubmitHandler={ onSubmitHandler }
+                pathname={ pathname }
+                shouldSave={ shouldSave }
+            />
         </form>
     )
 }
