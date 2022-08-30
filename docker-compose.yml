@@ -10,6 +10,6 @@ services:
   backend:
     build: ./backend
     ports:
-      - 3001:5000
+      - 5000:5000
     container_name: app_backend
     restart: 'always'
