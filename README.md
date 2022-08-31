@@ -121,17 +121,11 @@ http://localhost:3000
 
 ## Swagger
 
-Fuçando pela internet, descobri que o Flask já disponibiliza uma documentação da API com o Swagger
+Fuçando pela internet, descobri que o Flask-RESTPlus já disponibiliza uma documentação da API com o Swagger
 
 Você só precisa estar com o backend rodando e acessar a porta:
 
 ```
-(Rodando servidor com Docker)
-http://localhost:3001/api/
-```
-
-```
-(Rodando servidor no Terminal)
 http://localhost:5000/api/
 ```
 
