@@ -1,11 +1,11 @@
 
-# SoftFocus Test
+# Agri-Tec
 
 Durante todas as 4 estações do ano, agricultores do Brasil inteiro trabalham em suas lavouras. Entretanto, nesse período podem acontecer eventos naturais devastadores que destruirão plantações inteiras e isso será um prejuízo imenso para os produtores
 
 Para auxiliar estes produtores existe o Proagro, que de forma resumida serve para exonerar o produtor rural das perdas nas suas lavouras
 
-Sendo assim, o objetivo do projeto SoftFocus Test é criar uma tela na qual os analistas do Proagro podem comunicar as perdas de forma simples e prática
+Sendo assim, o objetivo do projeto Agri-Tec é criar uma tela na qual os analistas do Proagro podem comunicar as perdas de forma simples e prática
 
 
 
